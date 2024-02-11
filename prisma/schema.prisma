@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Caleg{
+  id Int @id @default(autoincrement())
+  pemilihan String
+  partai String
+  caleg_no Int
+  suara Int @default(0)
+  updated_at DateTime @default(now())
+}
+
+model Partai{
+  id Int @id @default(autoincrement())
+  pemilihan String
+  partai String
+  suara Int @default(0)
+  updated_at DateTime @default(now())
+}
+
+model Tps {
+  id Int @id @default(autoincrement())
+  tahun_pemilihan String @default("2024")
+  provinsi String
+  kota String
+  kecamatan String
+  kelurahan String
+  tps Int
+  pemilihan String
+  invalid_suara Int
+  updated_at DateTime @default(now())
+}
